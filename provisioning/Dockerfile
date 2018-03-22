@@ -7,13 +7,14 @@ RUN apt-get update && apt-get install -y \
     mysql-client \
     libpng-dev \
     locales \
-    zip
+    zip \
+    jpegoptim optipng pngquant gifsicle
 
 # Clear cache
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Installing extensions
-RUN docker-php-ext-install pdo_mysql gd mbstring zip
+RUN docker-php-ext-install pdo_mysql gd mbstring zip exif
 
 # Installing composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
